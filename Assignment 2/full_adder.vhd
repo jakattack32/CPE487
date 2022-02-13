@@ -1,41 +1,41 @@
---Code sourced from Lauri Võsandi
---https://lauri.xn--vsandi-pxa.com/hdl/ghdl.html
+--Code sourced from nandland.com
+--https://www.nandland.com/vhdl/modules/module-full-adder.html
 library ieee;
 use ieee.std_logic_1164.all;
-
-entity full_adder_testbench is
-end full_adder_testbench;
-
-architecture behavior of full_adder_testbench is
-    component full_adder is
-        port (
-            a  : in  std_logic;
-            b  : in  std_logic;
-            ci : in  std_logic;
-            s  : out std_logic;
-            co : out std_logic);
-    end component;
-    signal input  : std_logic_vector(2 downto 0);
-    signal output : std_logic_vector(1 downto 0);
-begin
-    uut: full_adder port map (
-        a => input(0),
-        b => input(1),
-        ci => input(2),
-        s => output(0),
-        co => output(1)
+use ieee.numeric_std.all;
+ 
+entity full_adder is
+  port (
+    i_bit1  : in std_logic;
+    i_bit2  : in std_logic;
+    i_carry : in std_logic;
+    --
+    o_sum   : out std_logic;
+    o_carry : out std_logic
     );
-
-    stim_proc: process
-    begin
-        input <= "000"; wait for 10 ns; assert output = "00" report "0+0+0 failed";
-        input <= "001"; wait for 10 ns; assert output = "01" report "0+0+1 failed";
-        input <= "010"; wait for 10 ns; assert output = "01" report "0+1+0 failed";
-        input <= "100"; wait for 10 ns; assert output = "01" report "1+0+0 failed";
-        input <= "011"; wait for 10 ns; assert output = "10" report "0+1+1 failed";
-        input <= "110"; wait for 10 ns; assert output = "10" report "1+1+0 failed";
-        input <= "111"; wait for 10 ns; assert output = "11" report "1+1+1 failed";
-        report "Full adder testbench finished";
-        wait;
-    end process;
-end;
+end full_adder;
+ 
+ 
+architecture rtl of full_adder is
+ 
+  signal w_WIRE_1 : std_logic;
+  signal w_WIRE_2 : std_logic;
+  signal w_WIRE_3 : std_logic;
+   
+begin
+ 
+  w_WIRE_1 <= i_bit1 xor i_bit2;
+  w_WIRE_2 <= w_WIRE_1 and i_carry;
+  w_WIRE_3 <= i_bit1 and i_bit2;
+ 
+  o_sum   <= w_WIRE_1 xor i_carry;
+  o_carry <= w_WIRE_2 or w_WIRE_3;
+ 
+ 
+  -- FYI: Code above using wires will produce the same results as:
+  -- o_sum   <= i_bit1 xor i_bit2 xor i_carry;
+  -- o_carry <= (i_bit1 xor i_bit2) and i_carry) or (i_bit1 and i_bit2);
+ 
+  -- Wires are just used to be explicit. 
+ 
+end rtl;
