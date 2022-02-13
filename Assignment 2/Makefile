@@ -10,9 +10,9 @@ MODULES=\
 
 
 test: $(MODULES)
-        ./full_adder_testbench --vcd=full_adder_testbench.vcd
-        ./carry_ripple_adder_testbench --vcd=carry_ripple_adder_testbench.vcd
-        ./alu_testbench --vcd=alu_testbench.vcd
+    ./full_adder_testbench --vcd=full_adder_testbench.vcd
+    ./carry_ripple_adder_testbench --vcd=carry_ripple_adder_testbench.vcd
+    ./alu_testbench --vcd=alu_testbench.vcd
 
 # Binary depends on the object file
 %: %.o
