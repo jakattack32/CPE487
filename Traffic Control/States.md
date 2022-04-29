@@ -24,3 +24,7 @@ Simulation Length: 5 seconds
 ### State e:
 ![image](https://user-images.githubusercontent.com/90064335/165868830-1d4aa764-ce1d-4e22-8603-dc5fbeae4503.png)
 Simulation Length: 1 second
+
+### State c:
+![image](https://user-images.githubusercontent.com/90064335/165868748-99a63fda-1f93-4e15-ae77-91928fd8ecae.png)
+Simulation Length: 1 second
