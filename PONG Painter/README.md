@@ -1,1 +1,1 @@
-##text
+The goal of his projet is to integrate the previous code from past projects for pong games in to a sort of application where you can "shoot" pixels, which then will remain on the screen in the color of choice picked before firing. Multiple shots can then be combined to make a picture. Color is determined by switches, and a joystick is used to "aim" with a button for release
